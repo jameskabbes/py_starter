@@ -1,4 +1,4 @@
-[Documentation](https://jameskabbes.github.io/the_garden)
+[Documentation](https://jameskabbes.github.io/py_starter)
 
-# {name}
-{description}
+# py_starter
+helpful python starter functions for various repository use
