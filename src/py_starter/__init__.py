@@ -1,1 +1,1 @@
-import py_starter
+from . import py_starter
