@@ -150,7 +150,7 @@ def copy( string: str ) -> None:
     import pyperclip
     pyperclip.copy(string)
 
-def paste() -> None:
+def paste() -> str:
 
     """returns the string copied on the OS clipboard"""
     import pyperclip
@@ -270,5 +270,3 @@ def confirm_wrap(string, *dec_args, **dec_kwargs):
         return wrapper
 
     return confirm_decorator
-
-
