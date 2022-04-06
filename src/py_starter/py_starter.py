@@ -58,6 +58,16 @@ def find_string_formatting( string: str, trigger_beg: str = '{{', trigger_end: s
 
     return re.findall( r'\{trigger_beg}.*?\{trigger_end}'.format( trigger_beg=trigger_beg, trigger_end=trigger_end ), string )
 
+def strip_trigger( string: str, trigger_beg: str = '{{', trigger_end: str = '}}' ) -> str:
+
+    a = len(trigger_beg)
+    b = -1*len(trigger_end)
+
+    assert string[ : a ] == trigger_beg
+    assert string[ b : ] == trigger_end
+    
+    return string[ a:b ]
+
 def command_line( string: str, print_off: bool = False ) -> None:
 
     """inputs the given string to the terminal"""
@@ -220,7 +230,27 @@ def get_secret_input( prompt: str = 'Password: ' ) -> str:
     secret_input = getpass.getpass( prompt = prompt )
     return secret_input
 
-def get_user_selection_for_list_items( list_of_strings: List[str], prompt: str = 'Make your selection - enter to exit', print_off: str = False ) -> List[int]:
+def get_selection_from_list( iterable, prompt: str = 'Select one', print_off: bool = True ) -> Any:
+
+    """Returns the Object from iterable that the user selected"""
+
+    if len(iterable) > 0:
+
+        if len(iterable) == 1:
+            return list(iterable)[0]
+    
+        else:
+            if print_off:
+                print_for_loop( [ str(i) for i in iterable ] )
+
+            ind = get_int_input( 1, len(iterable), prompt=prompt ) 
+            return list(iterable)[ ind-1 ]
+
+    else:
+        return None
+
+
+def get_user_selection_for_list_items( list_of_strings: List[str], prompt: str = 'Make your selection - enter to exit', print_off: bool = True ) -> List[int]:
 
     """Returns a list of indices pertaining to what the user selected from a list of options"""
 
