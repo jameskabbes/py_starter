@@ -300,3 +300,13 @@ def confirm_wrap(string, *dec_args, **dec_kwargs):
         return wrapper
 
     return confirm_decorator
+
+
+
+def run( *sys_args ):
+
+    print ('Running main for py_starter')
+
+if __name__ == '__main__':
+
+    run()
