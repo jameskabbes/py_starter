@@ -1,3 +1,4 @@
+import pyperclip
 import importlib.util
 import getpass
 import random
@@ -157,13 +158,11 @@ def print_for_loop( iterable: List ) -> None:
 def copy( string: str ) -> None:
 
     """copies string to clipboard"""
-    import pyperclip
     pyperclip.copy(string)
 
 def paste() -> str:
 
     """returns the string copied on the OS clipboard"""
-    import pyperclip
     return pyperclip.paste()
 
 def read_text_file( file_path: str, mode = 'r' ) -> str:
