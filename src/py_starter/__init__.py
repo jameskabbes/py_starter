@@ -1,1 +1,1 @@
-from . import py_starter
+from .py_starter import *
