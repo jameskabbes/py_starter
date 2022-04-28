@@ -256,6 +256,7 @@ def get_user_selection_for_list_items( iterable, prompt: str = 'Make your select
     if print_off:
         print_for_loop( iterable )
 
+    exceptions.append( '' )
     inds = []
     while True:
 
