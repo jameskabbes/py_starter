@@ -175,7 +175,7 @@ def read_text_file( file_path: str, mode = 'r' ) -> str:
 
     return string
 
-def write_text_file( file_path, string: str = '', lines: List[str] = [], mode: str = 'w' ) -> None:
+def write_text_file( file_path, string: str = '', lines: List[str] = [], mode: str = 'w', **kwargs ) -> None:
 
     """reads to file_path, given kwargs for string, list of lines"""
 
@@ -249,27 +249,31 @@ def get_selection_from_list( iterable, prompt: str = 'Select one', print_off: bo
         return None
 
 
-def get_user_selection_for_list_items( list_of_strings: List[str], prompt: str = 'Make your selection - enter to exit', print_off: bool = True ) -> List[int]:
+def get_user_selection_for_list_items( iterable, prompt: str = 'Make your selection - enter to exit', exceptions: List[str] = [], print_off: bool = True ) -> List[int]:
 
     """Returns a list of indices pertaining to what the user selected from a list of options"""
 
     if print_off:
-        print_for_loop( list_of_strings )
+        print_for_loop( iterable )
 
+    exceptions.append( '' )
     inds = []
     while True:
 
-        index = get_int_input( 1, len(list_of_strings), prompt = prompt, exceptions = [''] )
+        index = get_int_input( 1, len(iterable), prompt = prompt, exceptions = exceptions )
         if index == '':
+            break
+        elif index in exceptions:
+            inds.append( index )
             break
 
         index = index - 1
 
         if index not in inds:
-            print (list_of_strings[index] + ' added to the queue')
+            print ( str(iterable[index]) + ' added to the queue')
             inds.append( index )
         else:
-            print ( list_of_strings[index] +  ' already added to the queue')
+            print ( str(iterable[index]) +  ' already added to the queue')
 
     return inds
 
@@ -300,6 +304,34 @@ def confirm_wrap(string, *dec_args, **dec_kwargs):
 
     return confirm_decorator
 
+
+def try_operation_wrap( *dec_args, debug = False, **dec_kwargs):
+
+    """can pass in debug True or False"""
+
+    def try_operation_decorator( func ):
+
+        """Any function decorated with this will return a boolean successful attempt"""
+
+        @functools.wraps(func)
+        def wrapper( *called_args, **called_kwargs ):
+
+            if debug:
+
+                _ = func( *called_args, **called_kwargs )
+
+            if not debug:
+               
+                try:
+                    _ = func( *called_args, **called_kwargs )
+                except:
+                    return False
+    
+            return True
+
+        return wrapper
+
+    return try_operation_decorator
 
 
 def run( *sys_args ):
