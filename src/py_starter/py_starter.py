@@ -229,6 +229,26 @@ def get_secret_input( prompt: str = 'Password: ' ) -> str:
     secret_input = getpass.getpass( prompt = prompt )
     return secret_input
 
+def find_kwargs_in_strings( strings: List[str] ):
+
+    args = []
+    kwargs = {}
+
+    for string in strings:
+        vals = string.split('=')
+
+        if len(vals) == 1:
+            args.append(vals[0])
+        if len(vals) > 1:
+            key = '='.join(vals[:-1])
+            value = vals[-1]
+            kwargs[key] = value
+    
+    return args, kwargs
+
+
+
+
 def get_selection_from_list( iterable, prompt: str = 'Select one', print_off: bool = True ) -> Any:
 
     """Returns the Object from iterable that the user selected"""
