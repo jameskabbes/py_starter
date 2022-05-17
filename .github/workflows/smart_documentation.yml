@@ -23,10 +23,10 @@ jobs:
         run: |
           touch .nojekyll
       - uses: actions/checkout@master
-      - name: Build and Commit
+      - name: Generate Smart Doc files
         run: |
           python -m smart_documentation template=default
-        uses: sphinx-notes/pages@v2
+      - uses: sphinx-notes/pages@v2
       - name: commit to gh-pages
         run: |
           git push origin gh-pages
