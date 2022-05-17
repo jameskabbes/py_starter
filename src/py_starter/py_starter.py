@@ -301,9 +301,9 @@ def get_user_selection_for_list_items( iterable, prompt: str = 'Make your select
         elif index in exceptions:
             if index == 'all' and allow_all:
                 inds = list(range(len(iterable)))
-                break
             else:   
                 inds.append( index )
+            break
 
         else: # index is a regular number
             index = index - 1
