@@ -254,12 +254,16 @@
 
 <div class="viewcode-block" id="import_from_pickle"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.import_from_pickle.html#src.py_starter.py_starter.import_from_pickle">[docs]</a><span class="k">def</span> <span class="nf">import_from_pickle</span><span class="p">(</span> <span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 
+    <span class="sd">&quot;&quot;&quot;Given a file_path to a pickle object, return the loaded Object&quot;&quot;&quot;</span>
+
     <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
     <span class="n">Obj</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span> <span class="n">f</span> <span class="p">)</span>
     <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">Obj</span></div>
 
-<div class="viewcode-block" id="export_to_pickle"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.export_to_pickle.html#src.py_starter.py_starter.export_to_pickle">[docs]</a><span class="k">def</span> <span class="nf">export_to_pickle</span><span class="p">(</span> <span class="n">Obj</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="export_to_pickle"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.export_to_pickle.html#src.py_starter.py_starter.export_to_pickle">[docs]</a><span class="k">def</span> <span class="nf">export_to_pickle</span><span class="p">(</span> <span class="n">Obj</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>   
+
+    <span class="sd">&quot;&quot;&quot;Export the Object to a file_path with pickle library&quot;&quot;&quot;</span>
 
     <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span>
     <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span> <span class="n">Obj</span><span class="p">,</span> <span class="n">f</span> <span class="p">)</span>
@@ -267,13 +271,19 @@
 
 <div class="viewcode-block" id="dict_to_json"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.dict_to_json.html#src.py_starter.py_starter.dict_to_json">[docs]</a><span class="k">def</span> <span class="nf">dict_to_json</span><span class="p">(</span> <span class="n">dictionary</span><span class="p">:</span> <span class="nb">dict</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 
+    <span class="sd">&quot;&quot;&quot;Given a dictionary, turn it into a json string&quot;&quot;&quot;</span>
+
     <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span> <span class="n">dictionary</span> <span class="p">)</span></div>
 
 <div class="viewcode-block" id="json_to_dict"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.json_to_dict.html#src.py_starter.py_starter.json_to_dict">[docs]</a><span class="k">def</span> <span class="nf">json_to_dict</span><span class="p">(</span> <span class="n">string</span><span class="p">:</span> <span class="nb">str</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 
+    <span class="sd">&quot;&quot;&quot;Given a json string, turn it into a dictionary&quot;&quot;&quot;</span>
+
     <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span> <span class="n">string</span> <span class="p">)</span></div>
 
 <div class="viewcode-block" id="import_module_from_path"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.import_module_from_path.html#src.py_starter.py_starter.import_module_from_path">[docs]</a><span class="k">def</span> <span class="nf">import_module_from_path</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">module_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;new_module&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;Given a path to a python module, load and return the module&quot;&quot;&quot;</span>
 
     <span class="n">spec</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">spec_from_file_location</span><span class="p">(</span> <span class="n">module_name</span><span class="p">,</span> <span class="n">path</span> <span class="p">)</span>
     <span class="n">module</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">module_from_spec</span><span class="p">(</span> <span class="n">spec</span> <span class="p">)</span>
@@ -284,6 +294,7 @@
 <div class="viewcode-block" id="verify_with_math"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.verify_with_math.html#src.py_starter.py_starter.verify_with_math">[docs]</a><span class="k">def</span> <span class="nf">verify_with_math</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 
     <span class="sd">&quot;&quot;&quot;Makes the user solve a basic math question for verification&quot;&quot;&quot;</span>
+    
     <span class="n">a</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">)</span>
     <span class="n">b</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">)</span>
     <span class="n">answer</span> <span class="o">=</span> <span class="n">get_int_input</span><span class="p">(</span><span class="o">-</span><span class="mi">100000000</span><span class="p">,</span> <span class="mi">100000000</span><span class="p">,</span> <span class="n">prompt</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Solve the equation: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; * &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; = &#39;</span><span class="p">),</span> <span class="n">show_range</span> <span class="o">=</span> <span class="kc">False</span> <span class="p">)</span>
