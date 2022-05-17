@@ -1,0 +1,6 @@
+src.py\_starter.py\_starter.open\_url
+=====================================
+
+.. currentmodule:: src.py_starter.py_starter
+
+.. autofunction:: open_url

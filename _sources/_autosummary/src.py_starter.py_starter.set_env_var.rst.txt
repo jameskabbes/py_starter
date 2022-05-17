@@ -1,0 +1,6 @@
+src.py\_starter.py\_starter.set\_env\_var
+=========================================
+
+.. currentmodule:: src.py_starter.py_starter
+
+.. autofunction:: set_env_var

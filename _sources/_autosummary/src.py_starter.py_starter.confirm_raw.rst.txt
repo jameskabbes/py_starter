@@ -1,0 +1,6 @@
+src.py\_starter.py\_starter.confirm\_raw
+========================================
+
+.. currentmodule:: src.py_starter.py_starter
+
+.. autofunction:: confirm_raw

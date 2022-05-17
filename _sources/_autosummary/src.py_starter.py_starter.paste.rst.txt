@@ -1,0 +1,6 @@
+src.py\_starter.py\_starter.paste
+=================================
+
+.. currentmodule:: src.py_starter.py_starter
+
+.. autofunction:: paste

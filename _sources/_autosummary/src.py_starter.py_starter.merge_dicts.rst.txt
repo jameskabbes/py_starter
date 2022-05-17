@@ -1,0 +1,6 @@
+src.py\_starter.py\_starter.merge\_dicts
+========================================
+
+.. currentmodule:: src.py_starter.py_starter
+
+.. autofunction:: merge_dicts

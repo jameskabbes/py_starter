@@ -1,0 +1,6 @@
+src.py\_starter.py\_starter.export\_to\_pickle
+==============================================
+
+.. currentmodule:: src.py_starter.py_starter
+
+.. autofunction:: export_to_pickle

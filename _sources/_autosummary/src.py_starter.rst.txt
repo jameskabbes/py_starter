@@ -1,0 +1,30 @@
+src.py\_starter
+===============
+
+.. automodule:: src.py_starter
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   src.py_starter.py_starter
+

@@ -1,0 +1,6 @@
+src.py\_starter.py\_starter.command\_line
+=========================================
+
+.. currentmodule:: src.py_starter.py_starter
+
+.. autofunction:: command_line

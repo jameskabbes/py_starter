@@ -1,0 +1,6 @@
+src.py\_starter.py\_starter.write\_text\_file
+=============================================
+
+.. currentmodule:: src.py_starter.py_starter
+
+.. autofunction:: write_text_file

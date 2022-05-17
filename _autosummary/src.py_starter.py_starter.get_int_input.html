@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.py_starter.py_starter.get_int_input &mdash; kabbes_py_starter 0.9.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/readthedocs-custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="src.py_starter.py_starter.get_secret_input" href="src.py_starter.py_starter.get_secret_input.html" />
+    <link rel="prev" title="src.py_starter.py_starter.get_env_var" href="src.py_starter.py_starter.get_env_var.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> kabbes_py_starter
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="src.html">src</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="src.py_starter.html">src.py_starter</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="src.py_starter.py_starter.html">src.py_starter.py_starter</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="src.py_starter.py_starter.command_line.html">src.py_starter.py_starter.command_line</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.py_starter.py_starter.confirm_raw.html">src.py_starter.py_starter.confirm_raw</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.py_starter.py_starter.confirm_wrap.html">src.py_starter.py_starter.confirm_wrap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.py_starter.py_starter.copy.html">src.py_starter.py_starter.copy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.py_starter.py_starter.dict_to_json.html">src.py_starter.py_starter.dict_to_json</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.py_starter.py_starter.export_to_pickle.html">src.py_starter.py_starter.export_to_pickle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.py_starter.py_starter.find_kwargs_in_strings.html">src.py_starter.py_starter.find_kwargs_in_strings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.py_starter.py_starter.find_string_formatting.html">src.py_starter.py_starter.find_string_formatting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.py_starter.py_starter.get_env_var.html">src.py_starter.py_starter.get_env_var</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">src.py_starter.py_starter.get_int_input</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.py_starter.py_starter.get_secret_input.html">src.py_starter.py_starter.get_secret_input</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.py_starter.py_starter.get_selection_from_list.html">src.py_starter.py_starter.get_selection_from_list</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.py_starter.py_starter.get_user_selection_for_list_items.html">src.py_starter.py_starter.get_user_selection_for_list_items</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.py_starter.py_starter.import_from_pickle.html">src.py_starter.py_starter.import_from_pickle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.py_starter.py_starter.import_module_from_path.html">src.py_starter.py_starter.import_module_from_path</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.py_starter.py_starter.json_to_dict.html">src.py_starter.py_starter.json_to_dict</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.py_starter.py_starter.merge_dicts.html">src.py_starter.py_starter.merge_dicts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.py_starter.py_starter.merge_two_dicts.html">src.py_starter.py_starter.merge_two_dicts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.py_starter.py_starter.open_url.html">src.py_starter.py_starter.open_url</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.py_starter.py_starter.paste.html">src.py_starter.py_starter.paste</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.py_starter.py_starter.print_command_line.html">src.py_starter.py_starter.print_command_line</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.py_starter.py_starter.print_for_loop.html">src.py_starter.py_starter.print_for_loop</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.py_starter.py_starter.read_text_file.html">src.py_starter.py_starter.read_text_file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.py_starter.py_starter.replace_default_kwargs.html">src.py_starter.py_starter.replace_default_kwargs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.py_starter.py_starter.run.html">src.py_starter.py_starter.run</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.py_starter.py_starter.set_env_var.html">src.py_starter.py_starter.set_env_var</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.py_starter.py_starter.smart_format.html">src.py_starter.py_starter.smart_format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.py_starter.py_starter.strip_trigger.html">src.py_starter.py_starter.strip_trigger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.py_starter.py_starter.try_operation_wrap.html">src.py_starter.py_starter.try_operation_wrap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.py_starter.py_starter.verify_with_math.html">src.py_starter.py_starter.verify_with_math</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.py_starter.py_starter.write_text_file.html">src.py_starter.py_starter.write_text_file</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">kabbes_py_starter</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="src.html">src</a> &raquo;</li>
+          <li><a href="src.py_starter.html">src.py_starter</a> &raquo;</li>
+          <li><a href="src.py_starter.py_starter.html">src.py_starter.py_starter</a> &raquo;</li>
+      <li>src.py_starter.py_starter.get_int_input</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="src-py-starter-py-starter-get-int-input">
+<h1>src.py_starter.py_starter.get_int_input<a class="headerlink" href="#src-py-starter-py-starter-get-int-input" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="src.py_starter.py_starter.get_int_input">
+<span class="sig-name descname"><span class="pre">get_int_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lower</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Enter</span> <span class="pre">an</span> <span class="pre">number:</span> <span class="pre">'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exceptions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.10)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_range</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span></span><a class="reference internal" href="../_modules/src/py_starter/py_starter.html#get_int_input"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#src.py_starter.py_starter.get_int_input" title="Permalink to this definition">¶</a></dt>
+<dd><p>prompts the user to input an integer between two bounds, gives the option to break if answer is found in the list of exceptions</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="src.py_starter.py_starter.get_env_var.html" class="btn btn-neutral float-left" title="src.py_starter.py_starter.get_env_var" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="src.py_starter.py_starter.get_secret_input.html" class="btn btn-neutral float-right" title="src.py_starter.py_starter.get_secret_input" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

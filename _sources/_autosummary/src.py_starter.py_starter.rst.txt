@@ -1,0 +1,61 @@
+src.py\_starter.py\_starter
+===========================
+
+.. automodule:: src.py_starter.py_starter
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+      :nosignatures:
+   
+      command_line
+      confirm_raw
+      confirm_wrap
+      copy
+      dict_to_json
+      export_to_pickle
+      find_kwargs_in_strings
+      find_string_formatting
+      get_env_var
+      get_int_input
+      get_secret_input
+      get_selection_from_list
+      get_user_selection_for_list_items
+      import_from_pickle
+      import_module_from_path
+      json_to_dict
+      merge_dicts
+      merge_two_dicts
+      open_url
+      paste
+      print_command_line
+      print_for_loop
+      read_text_file
+      replace_default_kwargs
+      run
+      set_env_var
+      smart_format
+      strip_trigger
+      try_operation_wrap
+      verify_with_math
+      write_text_file
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

@@ -1,0 +1,6 @@
+src.py\_starter.py\_starter.json\_to\_dict
+==========================================
+
+.. currentmodule:: src.py_starter.py_starter
+
+.. autofunction:: json_to_dict

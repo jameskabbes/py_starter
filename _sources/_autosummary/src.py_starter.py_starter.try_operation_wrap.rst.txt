@@ -1,0 +1,6 @@
+src.py\_starter.py\_starter.try\_operation\_wrap
+================================================
+
+.. currentmodule:: src.py_starter.py_starter
+
+.. autofunction:: try_operation_wrap

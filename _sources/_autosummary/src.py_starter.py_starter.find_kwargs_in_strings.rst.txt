@@ -1,0 +1,6 @@
+src.py\_starter.py\_starter.find\_kwargs\_in\_strings
+=====================================================
+
+.. currentmodule:: src.py_starter.py_starter
+
+.. autofunction:: find_kwargs_in_strings

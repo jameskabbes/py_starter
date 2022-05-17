@@ -1,0 +1,6 @@
+src.py\_starter.py\_starter.get\_selection\_from\_list
+======================================================
+
+.. currentmodule:: src.py_starter.py_starter
+
+.. autofunction:: get_selection_from_list

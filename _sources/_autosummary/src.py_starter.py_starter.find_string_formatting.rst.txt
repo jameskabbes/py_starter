@@ -1,0 +1,6 @@
+src.py\_starter.py\_starter.find\_string\_formatting
+====================================================
+
+.. currentmodule:: src.py_starter.py_starter
+
+.. autofunction:: find_string_formatting

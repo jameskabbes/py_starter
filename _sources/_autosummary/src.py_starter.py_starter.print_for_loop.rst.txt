@@ -1,0 +1,6 @@
+src.py\_starter.py\_starter.print\_for\_loop
+============================================
+
+.. currentmodule:: src.py_starter.py_starter
+
+.. autofunction:: print_for_loop

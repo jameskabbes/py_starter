@@ -1,0 +1,6 @@
+src.py\_starter.py\_starter.copy
+================================
+
+.. currentmodule:: src.py_starter.py_starter
+
+.. autofunction:: copy

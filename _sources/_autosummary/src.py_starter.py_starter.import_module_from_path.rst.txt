@@ -1,0 +1,6 @@
+src.py\_starter.py\_starter.import\_module\_from\_path
+======================================================
+
+.. currentmodule:: src.py_starter.py_starter
+
+.. autofunction:: import_module_from_path

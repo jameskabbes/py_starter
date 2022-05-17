@@ -1,0 +1,6 @@
+src.py\_starter.py\_starter.run
+===============================
+
+.. currentmodule:: src.py_starter.py_starter
+
+.. autofunction:: run

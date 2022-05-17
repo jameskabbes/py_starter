@@ -1,0 +1,6 @@
+src.py\_starter.py\_starter.get\_user\_selection\_for\_list\_items
+==================================================================
+
+.. currentmodule:: src.py_starter.py_starter
+
+.. autofunction:: get_user_selection_for_list_items

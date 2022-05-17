@@ -1,0 +1,6 @@
+src.py\_starter.py\_starter.replace\_default\_kwargs
+====================================================
+
+.. currentmodule:: src.py_starter.py_starter
+
+.. autofunction:: replace_default_kwargs

@@ -1,0 +1,6 @@
+src.py\_starter.py\_starter.smart\_format
+=========================================
+
+.. currentmodule:: src.py_starter.py_starter
+
+.. autofunction:: smart_format

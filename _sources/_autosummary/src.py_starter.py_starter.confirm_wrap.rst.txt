@@ -1,0 +1,6 @@
+src.py\_starter.py\_starter.confirm\_wrap
+=========================================
+
+.. currentmodule:: src.py_starter.py_starter
+
+.. autofunction:: confirm_wrap

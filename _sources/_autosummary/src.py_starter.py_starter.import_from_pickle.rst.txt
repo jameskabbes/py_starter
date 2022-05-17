@@ -1,0 +1,6 @@
+src.py\_starter.py\_starter.import\_from\_pickle
+================================================
+
+.. currentmodule:: src.py_starter.py_starter
+
+.. autofunction:: import_from_pickle

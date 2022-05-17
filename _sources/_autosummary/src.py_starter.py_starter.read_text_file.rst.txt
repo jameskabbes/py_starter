@@ -1,0 +1,6 @@
+src.py\_starter.py\_starter.read\_text\_file
+============================================
+
+.. currentmodule:: src.py_starter.py_starter
+
+.. autofunction:: read_text_file

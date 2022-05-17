@@ -1,0 +1,6 @@
+src.py\_starter.py\_starter.verify\_with\_math
+==============================================
+
+.. currentmodule:: src.py_starter.py_starter
+
+.. autofunction:: verify_with_math

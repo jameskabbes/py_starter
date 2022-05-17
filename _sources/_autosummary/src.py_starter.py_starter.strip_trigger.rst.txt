@@ -1,0 +1,6 @@
+src.py\_starter.py\_starter.strip\_trigger
+==========================================
+
+.. currentmodule:: src.py_starter.py_starter
+
+.. autofunction:: strip_trigger

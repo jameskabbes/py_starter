@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>src.py_starter.py_starter &mdash; kabbes_py_starter 0.9.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/readthedocs-custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> kabbes_py_starter
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_autosummary/src.html">src</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">kabbes_py_starter</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+      <li>src.py_starter.py_starter</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for src.py_starter.py_starter</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">pyperclip</span>
+<span class="kn">import</span> <span class="nn">importlib.util</span>
+<span class="kn">import</span> <span class="nn">getpass</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">functools</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">platform</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Any</span>
+
+<span class="c1">### Helpful python functions</span>
+
+<div class="viewcode-block" id="get_int_input"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.get_int_input.html#src.py_starter.py_starter.get_int_input">[docs]</a><span class="k">def</span> <span class="nf">get_int_input</span><span class="p">(</span> <span class="n">lower</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">upper</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;Enter an number: &#39;</span><span class="p">,</span> <span class="n">exceptions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">show_range</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;prompts the user to input an integer between two bounds, gives the option to break if answer is found in the list of exceptions &quot;&quot;&quot;</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">show_range</span><span class="p">:</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="n">prompt</span> <span class="o">+</span> <span class="s1">&#39; (&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">lower</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">upper</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;): &#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">ans</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+
+            <span class="k">if</span> <span class="n">ans</span> <span class="ow">in</span> <span class="n">exceptions</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">ans</span>
+
+            <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Enter an integer&#39;</span><span class="p">)</span>
+            <span class="k">continue</span>
+
+        <span class="k">if</span> <span class="n">ans</span> <span class="o">&lt;</span> <span class="n">lower</span> <span class="ow">or</span> <span class="n">ans</span> <span class="o">&gt;</span> <span class="n">upper</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Enter a number between &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">lower</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; and &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">upper</span><span class="p">)</span> <span class="p">)</span>
+            <span class="k">continue</span>
+
+        <span class="k">return</span> <span class="n">ans</span></div>
+
+<div class="viewcode-block" id="smart_format"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.smart_format.html#src.py_starter.py_starter.smart_format">[docs]</a><span class="k">def</span> <span class="nf">smart_format</span><span class="p">(</span> <span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">formatting_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">trigger_beg</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;{{&#39;</span><span class="p">,</span> <span class="n">trigger_end</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;}}&#39;</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;Formatting strings that have curly braces in them is hard, this makes it easy&quot;&quot;&quot;</span>
+
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">formatting_dict</span><span class="p">:</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">formatting_dict</span><span class="p">[</span> <span class="n">key</span> <span class="p">]</span>
+
+        <span class="n">to_replace</span> <span class="o">=</span> <span class="n">trigger_beg</span> <span class="o">+</span> <span class="n">key</span> <span class="o">+</span> <span class="n">trigger_end</span> <span class="c1"># {{first_name}}</span>
+        <span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span> <span class="n">to_replace</span><span class="p">,</span> <span class="n">value</span> <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">string</span></div>
+
+<div class="viewcode-block" id="find_string_formatting"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.find_string_formatting.html#src.py_starter.py_starter.find_string_formatting">[docs]</a><span class="k">def</span> <span class="nf">find_string_formatting</span><span class="p">(</span> <span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">trigger_beg</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;{{&#39;</span><span class="p">,</span> <span class="n">trigger_end</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;}}&#39;</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+
+    <span class="sd">&quot;&quot;&quot;Looks for string formatted with certain triggers</span>
+<span class="sd">    Returns list of all string occurences where the triggers surround a string &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span> <span class="sa">r</span><span class="s1">&#39;\</span><span class="si">{trigger_beg}</span><span class="s1">.*?\</span><span class="si">{trigger_end}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">trigger_beg</span><span class="o">=</span><span class="n">trigger_beg</span><span class="p">,</span> <span class="n">trigger_end</span><span class="o">=</span><span class="n">trigger_end</span> <span class="p">),</span> <span class="n">string</span> <span class="p">)</span></div>
+
+<div class="viewcode-block" id="strip_trigger"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.strip_trigger.html#src.py_starter.py_starter.strip_trigger">[docs]</a><span class="k">def</span> <span class="nf">strip_trigger</span><span class="p">(</span> <span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">trigger_beg</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;{{&#39;</span><span class="p">,</span> <span class="n">trigger_end</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;}}&#39;</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+    <span class="n">a</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">trigger_beg</span><span class="p">)</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">trigger_end</span><span class="p">)</span>
+
+    <span class="k">assert</span> <span class="n">string</span><span class="p">[</span> <span class="p">:</span> <span class="n">a</span> <span class="p">]</span> <span class="o">==</span> <span class="n">trigger_beg</span>
+    <span class="k">assert</span> <span class="n">string</span><span class="p">[</span> <span class="n">b</span> <span class="p">:</span> <span class="p">]</span> <span class="o">==</span> <span class="n">trigger_end</span>
+    
+    <span class="k">return</span> <span class="n">string</span><span class="p">[</span> <span class="n">a</span><span class="p">:</span><span class="n">b</span> <span class="p">]</span></div>
+
+<div class="viewcode-block" id="command_line"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.command_line.html#src.py_starter.py_starter.command_line">[docs]</a><span class="k">def</span> <span class="nf">command_line</span><span class="p">(</span> <span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">print_off</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;inputs the given string to the terminal&quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">print_off</span><span class="p">:</span>
+        <span class="n">print_command_line</span><span class="p">(</span> <span class="n">string</span> <span class="p">)</span>
+
+    <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span> <span class="n">string</span><span class="o">.</span><span class="n">split</span><span class="p">()</span> <span class="p">)</span></div>
+
+<div class="viewcode-block" id="print_command_line"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.print_command_line.html#src.py_starter.py_starter.print_command_line">[docs]</a><span class="k">def</span> <span class="nf">print_command_line</span><span class="p">(</span> <span class="n">string</span><span class="p">:</span> <span class="nb">str</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+    <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;&gt;&gt;&gt; &#39;</span> <span class="o">+</span> <span class="n">string</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="get_env_var"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.get_env_var.html#src.py_starter.py_starter.get_env_var">[docs]</a><span class="k">def</span> <span class="nf">get_env_var</span><span class="p">(</span> <span class="n">var</span><span class="p">:</span> <span class="nb">str</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;returns the operating system&#39;s value for the given environment variable&quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span> <span class="n">var</span> <span class="p">)</span></div>
+
+<div class="viewcode-block" id="set_env_var"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.set_env_var.html#src.py_starter.py_starter.set_env_var">[docs]</a><span class="k">def</span> <span class="nf">set_env_var</span><span class="p">(</span> <span class="n">var</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;sets an environment variable with a given value&quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Windows&#39;</span><span class="p">:</span>
+        <span class="n">command_line</span><span class="p">(</span> <span class="s1">&#39;setx </span><span class="si">{var}</span><span class="s1"> </span><span class="si">{value}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">var</span> <span class="o">=</span> <span class="n">var</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">value</span> <span class="p">)</span> <span class="p">)</span>
+    <span class="k">elif</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Linux&#39;</span> <span class="ow">or</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Darwin&#39;</span><span class="p">:</span>
+        <span class="n">command_line</span><span class="p">(</span> <span class="s1">&#39;export </span><span class="si">{var}</span><span class="s1">=</span><span class="si">{value}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">var</span> <span class="o">=</span> <span class="n">var</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">value</span> <span class="p">)</span> <span class="p">)</span></div>
+
+<div class="viewcode-block" id="open_url"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.open_url.html#src.py_starter.py_starter.open_url">[docs]</a><span class="k">def</span> <span class="nf">open_url</span><span class="p">(</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">new</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="o">**</span><span class="n">webbrowser_get_kwargs</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;opens up the URL in a browser&quot;&quot;&quot;</span>
+
+    <span class="kn">import</span> <span class="nn">webbrowser</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">webbrowser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span> <span class="o">**</span><span class="n">webbrowser_get_kwargs</span> <span class="p">)</span><span class="o">.</span><span class="n">open</span><span class="p">(</span> <span class="n">url</span><span class="p">,</span> <span class="n">new</span><span class="o">=</span><span class="n">new</span> <span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Could not open webbrowser&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="replace_default_kwargs"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.replace_default_kwargs.html#src.py_starter.py_starter.replace_default_kwargs">[docs]</a><span class="k">def</span> <span class="nf">replace_default_kwargs</span><span class="p">(</span> <span class="n">preffered_dict</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;This function is bad practice: replace all instances with merge_dicts</span>
+<span class="sd">    if a given key in the preferred_dict is not found in kwargs, add it to kwargs with the default value&quot;&quot;&quot;</span>
+
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">preffered_dict</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">preffered_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">kwargs</span></div>
+
+<div class="viewcode-block" id="merge_dicts"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.merge_dicts.html#src.py_starter.py_starter.merge_dicts">[docs]</a><span class="k">def</span> <span class="nf">merge_dicts</span><span class="p">(</span> <span class="o">*</span><span class="n">dicts</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">ascending</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;Given N-number of dictionaries (with ascending priority), merge all together to one&quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span> <span class="n">dicts</span> <span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{}</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span> <span class="n">dicts</span> <span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">dicts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+
+        <span class="k">if</span> <span class="n">ascending</span><span class="p">:</span>
+            <span class="n">inds</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span> <span class="nb">len</span><span class="p">(</span><span class="n">dicts</span><span class="p">)</span> <span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">inds</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span> <span class="nb">len</span><span class="p">(</span><span class="n">dicts</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span> <span class="p">))</span>
+
+        <span class="n">merged_dict</span> <span class="o">=</span> <span class="n">merge_two_dicts</span><span class="p">(</span> <span class="n">dicts</span><span class="p">[</span> <span class="n">inds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">],</span> <span class="n">dicts</span><span class="p">[</span> <span class="n">inds</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">]</span> <span class="p">)</span>
+        <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">inds</span><span class="p">[</span> <span class="mi">2</span><span class="p">:</span> <span class="p">]:</span>
+            <span class="n">merged_dict</span> <span class="o">=</span> <span class="n">merge_two_dicts</span><span class="p">(</span> <span class="n">merged_dict</span><span class="p">,</span> <span class="n">dicts</span><span class="p">[</span> <span class="n">ind</span> <span class="p">]</span> <span class="p">)</span> 
+
+        <span class="k">return</span> <span class="n">merged_dict</span></div>
+
+<div class="viewcode-block" id="merge_two_dicts"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.merge_two_dicts.html#src.py_starter.py_starter.merge_two_dicts">[docs]</a><span class="k">def</span> <span class="nf">merge_two_dicts</span><span class="p">(</span> <span class="n">dict1</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">dict2</span><span class="p">:</span> <span class="nb">dict</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;merge two dictionaries, dict2 takes preference for conflicting entries&quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="p">{</span> <span class="o">**</span><span class="n">dict1</span><span class="p">,</span> <span class="o">**</span><span class="n">dict2</span> <span class="p">}</span></div>
+    <span class="c1"># python 3.9: return dict1 | dict2</span>
+
+<div class="viewcode-block" id="print_for_loop"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.print_for_loop.html#src.py_starter.py_starter.print_for_loop">[docs]</a><span class="k">def</span> <span class="nf">print_for_loop</span><span class="p">(</span> <span class="n">iterable</span><span class="p">:</span> <span class="n">List</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    
+    <span class="sd">&quot;&quot;&quot;prints a list in numercal list format&quot;&quot;&quot;</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span> <span class="n">iterable</span> <span class="p">)):</span>
+        <span class="nb">print</span><span class="p">(</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;. &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">iterable</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span></div>
+
+<div class="viewcode-block" id="copy"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.copy.html#src.py_starter.py_starter.copy">[docs]</a><span class="k">def</span> <span class="nf">copy</span><span class="p">(</span> <span class="n">string</span><span class="p">:</span> <span class="nb">str</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;copies string to clipboard&quot;&quot;&quot;</span>
+    <span class="n">pyperclip</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">string</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="paste"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.paste.html#src.py_starter.py_starter.paste">[docs]</a><span class="k">def</span> <span class="nf">paste</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;returns the string copied on the OS clipboard&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pyperclip</span><span class="o">.</span><span class="n">paste</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="read_text_file"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.read_text_file.html#src.py_starter.py_starter.read_text_file">[docs]</a><span class="k">def</span> <span class="nf">read_text_file</span><span class="p">(</span> <span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">mode</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;reads text file at the given file_path, returns the contents&quot;&quot;&quot;</span>
+
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+    <span class="n">string</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">string</span></div>
+
+<div class="viewcode-block" id="write_text_file"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.write_text_file.html#src.py_starter.py_starter.write_text_file">[docs]</a><span class="k">def</span> <span class="nf">write_text_file</span><span class="p">(</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">string</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">lines</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">mode</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;reads to file_path, given kwargs for string, list of lines&quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">lines</span> <span class="o">!=</span> <span class="p">[]:</span> <span class="c1">#overwrite the string var</span>
+        <span class="n">string</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span> <span class="n">string</span> <span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="import_from_pickle"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.import_from_pickle.html#src.py_starter.py_starter.import_from_pickle">[docs]</a><span class="k">def</span> <span class="nf">import_from_pickle</span><span class="p">(</span> <span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+    <span class="n">Obj</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span> <span class="n">f</span> <span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">Obj</span></div>
+
+<div class="viewcode-block" id="export_to_pickle"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.export_to_pickle.html#src.py_starter.py_starter.export_to_pickle">[docs]</a><span class="k">def</span> <span class="nf">export_to_pickle</span><span class="p">(</span> <span class="n">Obj</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span> <span class="n">Obj</span><span class="p">,</span> <span class="n">f</span> <span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="dict_to_json"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.dict_to_json.html#src.py_starter.py_starter.dict_to_json">[docs]</a><span class="k">def</span> <span class="nf">dict_to_json</span><span class="p">(</span> <span class="n">dictionary</span><span class="p">:</span> <span class="nb">dict</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span> <span class="n">dictionary</span> <span class="p">)</span></div>
+
+<div class="viewcode-block" id="json_to_dict"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.json_to_dict.html#src.py_starter.py_starter.json_to_dict">[docs]</a><span class="k">def</span> <span class="nf">json_to_dict</span><span class="p">(</span> <span class="n">string</span><span class="p">:</span> <span class="nb">str</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+
+    <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span> <span class="n">string</span> <span class="p">)</span></div>
+
+<div class="viewcode-block" id="import_module_from_path"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.import_module_from_path.html#src.py_starter.py_starter.import_module_from_path">[docs]</a><span class="k">def</span> <span class="nf">import_module_from_path</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">module_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;new_module&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+
+    <span class="n">spec</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">spec_from_file_location</span><span class="p">(</span> <span class="n">module_name</span><span class="p">,</span> <span class="n">path</span> <span class="p">)</span>
+    <span class="n">module</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">module_from_spec</span><span class="p">(</span> <span class="n">spec</span> <span class="p">)</span>
+
+    <span class="n">spec</span><span class="o">.</span><span class="n">loader</span><span class="o">.</span><span class="n">exec_module</span><span class="p">(</span> <span class="n">module</span> <span class="p">)</span>
+    <span class="k">return</span> <span class="n">module</span></div>
+
+<div class="viewcode-block" id="verify_with_math"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.verify_with_math.html#src.py_starter.py_starter.verify_with_math">[docs]</a><span class="k">def</span> <span class="nf">verify_with_math</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;Makes the user solve a basic math question for verification&quot;&quot;&quot;</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">)</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">)</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="n">get_int_input</span><span class="p">(</span><span class="o">-</span><span class="mi">100000000</span><span class="p">,</span> <span class="mi">100000000</span><span class="p">,</span> <span class="n">prompt</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Solve the equation: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; * &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; = &#39;</span><span class="p">),</span> <span class="n">show_range</span> <span class="o">=</span> <span class="kc">False</span> <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">answer</span> <span class="o">==</span> <span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="p">)</span> <span class="c1">#True for a correct answer</span></div>
+
+<div class="viewcode-block" id="get_secret_input"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.get_secret_input.html#src.py_starter.py_starter.get_secret_input">[docs]</a><span class="k">def</span> <span class="nf">get_secret_input</span><span class="p">(</span> <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;Password: &#39;</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+    <span class="n">secret_input</span> <span class="o">=</span> <span class="n">getpass</span><span class="o">.</span><span class="n">getpass</span><span class="p">(</span> <span class="n">prompt</span> <span class="o">=</span> <span class="n">prompt</span> <span class="p">)</span>
+    <span class="k">return</span> <span class="n">secret_input</span></div>
+
+<div class="viewcode-block" id="find_kwargs_in_strings"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.find_kwargs_in_strings.html#src.py_starter.py_starter.find_kwargs_in_strings">[docs]</a><span class="k">def</span> <span class="nf">find_kwargs_in_strings</span><span class="p">(</span> <span class="n">strings</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="p">):</span>
+
+    <span class="n">args</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">string</span> <span class="ow">in</span> <span class="n">strings</span><span class="p">:</span>
+        <span class="n">vals</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;=&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vals</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;=&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">vals</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">vals</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    
+    <span class="k">return</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span></div>
+
+
+
+
+<div class="viewcode-block" id="get_selection_from_list"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.get_selection_from_list.html#src.py_starter.py_starter.get_selection_from_list">[docs]</a><span class="k">def</span> <span class="nf">get_selection_from_list</span><span class="p">(</span> <span class="n">iterable</span><span class="p">,</span> <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;Select one&#39;</span><span class="p">,</span> <span class="n">print_off</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;Returns the Object from iterable that the user selected&quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">iterable</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">print_off</span><span class="p">:</span>
+                <span class="n">print_for_loop</span><span class="p">(</span> <span class="p">[</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">iterable</span> <span class="p">]</span> <span class="p">)</span>
+
+            <span class="n">ind</span> <span class="o">=</span> <span class="n">get_int_input</span><span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">iterable</span><span class="p">),</span> <span class="n">prompt</span><span class="o">=</span><span class="n">prompt</span> <span class="p">)</span> 
+            <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">iterable</span><span class="p">)[</span> <span class="n">ind</span><span class="o">-</span><span class="mi">1</span> <span class="p">]</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="get_user_selection_for_list_items"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.get_user_selection_for_list_items.html#src.py_starter.py_starter.get_user_selection_for_list_items">[docs]</a><span class="k">def</span> <span class="nf">get_user_selection_for_list_items</span><span class="p">(</span> <span class="n">iterable</span><span class="p">,</span> <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;Make your selection - enter to exit&#39;</span><span class="p">,</span> <span class="n">exceptions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">print_off</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+
+    <span class="sd">&quot;&quot;&quot;Returns a list of indices pertaining to what the user selected from a list of options&quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">print_off</span><span class="p">:</span>
+        <span class="n">print_for_loop</span><span class="p">(</span> <span class="n">iterable</span> <span class="p">)</span>
+
+    <span class="n">exceptions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="s1">&#39;&#39;</span> <span class="p">)</span>
+    <span class="n">inds</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+
+        <span class="n">index</span> <span class="o">=</span> <span class="n">get_int_input</span><span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">iterable</span><span class="p">),</span> <span class="n">prompt</span> <span class="o">=</span> <span class="n">prompt</span><span class="p">,</span> <span class="n">exceptions</span> <span class="o">=</span> <span class="n">exceptions</span> <span class="p">)</span>
+        <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="k">elif</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">exceptions</span><span class="p">:</span>
+            <span class="n">inds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">index</span> <span class="p">)</span>
+            <span class="k">break</span>
+
+        <span class="n">index</span> <span class="o">=</span> <span class="n">index</span> <span class="o">-</span> <span class="mi">1</span>
+
+        <span class="k">if</span> <span class="n">index</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">inds</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="p">(</span> <span class="nb">str</span><span class="p">(</span><span class="n">iterable</span><span class="p">[</span><span class="n">index</span><span class="p">])</span> <span class="o">+</span> <span class="s1">&#39; added to the queue&#39;</span><span class="p">)</span>
+            <span class="n">inds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">index</span> <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span> <span class="p">(</span> <span class="nb">str</span><span class="p">(</span><span class="n">iterable</span><span class="p">[</span><span class="n">index</span><span class="p">])</span> <span class="o">+</span>  <span class="s1">&#39; already added to the queue&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">inds</span></div>
+
+
+<div class="viewcode-block" id="confirm_raw"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.confirm_raw.html#src.py_starter.py_starter.confirm_raw">[docs]</a><span class="k">def</span> <span class="nf">confirm_raw</span><span class="p">(</span> <span class="n">string</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>  <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;Returns a boolean stating whether &#39;yes&#39; was entered in response to the prompt&quot;&quot;&quot;</span>
+
+    <span class="n">string_to_print</span> <span class="o">=</span> <span class="n">string</span> <span class="o">+</span> <span class="s1">&#39; Enter &quot;yes&quot; to continue: &#39;</span>
+    <span class="k">if</span> <span class="nb">input</span><span class="p">(</span><span class="n">string_to_print</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;yes&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="confirm_wrap"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.confirm_wrap.html#src.py_starter.py_starter.confirm_wrap">[docs]</a><span class="k">def</span> <span class="nf">confirm_wrap</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="o">*</span><span class="n">dec_args</span><span class="p">,</span> <span class="o">**</span><span class="n">dec_kwargs</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;given a string, returns a decorator &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">confirm_decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+
+        <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">called_args</span><span class="p">,</span> <span class="o">**</span><span class="n">called_kwargs</span><span class="p">):</span>
+
+            <span class="k">if</span> <span class="n">confirm_raw</span><span class="p">(</span> <span class="n">string</span> <span class="o">=</span> <span class="n">string</span> <span class="p">):</span>
+                <span class="k">return</span> <span class="n">func</span><span class="p">(</span> <span class="o">*</span><span class="n">called_args</span><span class="p">,</span> <span class="o">**</span><span class="n">called_kwargs</span> <span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="k">return</span> <span class="n">wrapper</span>
+
+    <span class="k">return</span> <span class="n">confirm_decorator</span></div>
+
+
+<div class="viewcode-block" id="try_operation_wrap"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.try_operation_wrap.html#src.py_starter.py_starter.try_operation_wrap">[docs]</a><span class="k">def</span> <span class="nf">try_operation_wrap</span><span class="p">(</span> <span class="o">*</span><span class="n">dec_args</span><span class="p">,</span> <span class="n">debug</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">dec_kwargs</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;can pass in debug True or False&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">try_operation_decorator</span><span class="p">(</span> <span class="n">func</span> <span class="p">):</span>
+
+        <span class="sd">&quot;&quot;&quot;Any function decorated with this will return a boolean successful attempt&quot;&quot;&quot;</span>
+
+        <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span> <span class="o">*</span><span class="n">called_args</span><span class="p">,</span> <span class="o">**</span><span class="n">called_kwargs</span> <span class="p">):</span>
+
+            <span class="k">if</span> <span class="n">debug</span><span class="p">:</span>
+
+                <span class="n">_</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span> <span class="o">*</span><span class="n">called_args</span><span class="p">,</span> <span class="o">**</span><span class="n">called_kwargs</span> <span class="p">)</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">debug</span><span class="p">:</span>
+               
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">_</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span> <span class="o">*</span><span class="n">called_args</span><span class="p">,</span> <span class="o">**</span><span class="n">called_kwargs</span> <span class="p">)</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="kc">False</span>
+    
+            <span class="k">return</span> <span class="kc">True</span>
+
+        <span class="k">return</span> <span class="n">wrapper</span>
+
+    <span class="k">return</span> <span class="n">try_operation_decorator</span></div>
+
+
+<div class="viewcode-block" id="run"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.run.html#src.py_starter.py_starter.run">[docs]</a><span class="k">def</span> <span class="nf">run</span><span class="p">(</span> <span class="o">*</span><span class="n">sys_args</span> <span class="p">):</span>
+
+    <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Running main for py_starter&#39;</span><span class="p">)</span></div>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+
+    <span class="n">run</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
