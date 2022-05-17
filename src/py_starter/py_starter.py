@@ -280,25 +280,33 @@ def get_selection_from_list( iterable, prompt: str = 'Select one', print_off: bo
         return None
 
 
-def get_user_selection_for_list_items( iterable, prompt: str = 'Make your selection - enter to exit', exceptions: List[str] = [], print_off: bool = True ) -> List[int]:
+def get_user_selection_for_list_items( iterable, prompt: str = 'Make your selection - enter to exit, type "all" to select all', exceptions: List[str] = [], allow_all: bool = True, print_off: bool = True ) -> List[int]:
 
     """Returns a list of indices pertaining to what the user selected from a list of options"""
 
     if print_off:
         print_for_loop( iterable )
 
-    exceptions.append( '' )
+    exceptions.append( '' ) # for breaking out of the loop
+    if allow_all:
+        exceptions.append('all')
+
     inds = []
     while True:
 
         index = get_int_input( 1, len(iterable), prompt = prompt, exceptions = exceptions )
         if index == '':
             break
-        elif index in exceptions:
-            inds.append( index )
-            break
 
-        index = index - 1
+        elif index in exceptions:
+            if index == 'all' and allow_all:
+                inds = list(range(len(iterable)))
+                break
+            else:   
+                inds.append( index )
+
+        else: # index is a regular number
+            index = index - 1
 
         if index not in inds:
             print ( str(iterable[index]) + ' added to the queue')
