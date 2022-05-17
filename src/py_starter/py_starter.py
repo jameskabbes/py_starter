@@ -188,12 +188,16 @@ def write_text_file( file_path, string: str = '', lines: List[str] = [], mode: s
 
 def import_from_pickle( file_path: str ) -> Any:
 
+    """Given a file_path to a pickle object, return the loaded Object"""
+
     f = open(file_path, 'rb')
     Obj = pickle.load( f )
     f.close()
     return Obj
 
-def export_to_pickle( Obj: Any, file_path: str ) -> None:
+def export_to_pickle( Obj: Any, file_path: str ) -> None:   
+
+    """Export the Object to a file_path with pickle library"""
 
     f = open(file_path, 'wb')
     pickle.dump( Obj, f )
@@ -201,13 +205,19 @@ def export_to_pickle( Obj: Any, file_path: str ) -> None:
 
 def dict_to_json( dictionary: dict ) -> str:
 
+    """Given a dictionary, turn it into a json string"""
+
     return json.dumps( dictionary )
 
 def json_to_dict( string: str ) -> dict:
 
+    """Given a json string, turn it into a dictionary"""
+
     return json.loads( string )
 
 def import_module_from_path(path: str, module_name: str = 'new_module') -> Any:
+
+    """Given a path to a python module, load and return the module"""
 
     spec = importlib.util.spec_from_file_location( module_name, path )
     module = importlib.util.module_from_spec( spec )
@@ -218,6 +228,7 @@ def import_module_from_path(path: str, module_name: str = 'new_module') -> Any:
 def verify_with_math() -> bool:
 
     """Makes the user solve a basic math question for verification"""
+    
     a = random.randint(1,9)
     b = random.randint(1,9)
     answer = get_int_input(-100000000, 100000000, prompt = ('Solve the equation: ' + str(a) + ' * ' + str(b) + ' = '), show_range = False )
