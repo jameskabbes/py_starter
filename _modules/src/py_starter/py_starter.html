@@ -346,25 +346,33 @@
         <span class="k">return</span> <span class="kc">None</span></div>
 
 
-<div class="viewcode-block" id="get_user_selection_for_list_items"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.get_user_selection_for_list_items.html#src.py_starter.py_starter.get_user_selection_for_list_items">[docs]</a><span class="k">def</span> <span class="nf">get_user_selection_for_list_items</span><span class="p">(</span> <span class="n">iterable</span><span class="p">,</span> <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;Make your selection - enter to exit&#39;</span><span class="p">,</span> <span class="n">exceptions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">print_off</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<div class="viewcode-block" id="get_user_selection_for_list_items"><a class="viewcode-back" href="../../../_autosummary/src.py_starter.py_starter.get_user_selection_for_list_items.html#src.py_starter.py_starter.get_user_selection_for_list_items">[docs]</a><span class="k">def</span> <span class="nf">get_user_selection_for_list_items</span><span class="p">(</span> <span class="n">iterable</span><span class="p">,</span> <span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;Make your selection - enter to exit, type &quot;all&quot; to select all&#39;</span><span class="p">,</span> <span class="n">exceptions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">allow_all</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">print_off</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
 
     <span class="sd">&quot;&quot;&quot;Returns a list of indices pertaining to what the user selected from a list of options&quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="n">print_off</span><span class="p">:</span>
         <span class="n">print_for_loop</span><span class="p">(</span> <span class="n">iterable</span> <span class="p">)</span>
 
-    <span class="n">exceptions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="s1">&#39;&#39;</span> <span class="p">)</span>
+    <span class="n">exceptions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="s1">&#39;&#39;</span> <span class="p">)</span> <span class="c1"># for breaking out of the loop</span>
+    <span class="k">if</span> <span class="n">allow_all</span><span class="p">:</span>
+        <span class="n">exceptions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+
     <span class="n">inds</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
 
         <span class="n">index</span> <span class="o">=</span> <span class="n">get_int_input</span><span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">iterable</span><span class="p">),</span> <span class="n">prompt</span> <span class="o">=</span> <span class="n">prompt</span><span class="p">,</span> <span class="n">exceptions</span> <span class="o">=</span> <span class="n">exceptions</span> <span class="p">)</span>
         <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
             <span class="k">break</span>
+
         <span class="k">elif</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">exceptions</span><span class="p">:</span>
-            <span class="n">inds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">index</span> <span class="p">)</span>
+            <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="s1">&#39;all&#39;</span> <span class="ow">and</span> <span class="n">allow_all</span><span class="p">:</span>
+                <span class="n">inds</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">iterable</span><span class="p">)))</span>
+            <span class="k">else</span><span class="p">:</span>   
+                <span class="n">inds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">index</span> <span class="p">)</span>
             <span class="k">break</span>
 
-        <span class="n">index</span> <span class="o">=</span> <span class="n">index</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span> <span class="c1"># index is a regular number</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="n">index</span> <span class="o">-</span> <span class="mi">1</span>
 
         <span class="k">if</span> <span class="n">index</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">inds</span><span class="p">:</span>
             <span class="nb">print</span> <span class="p">(</span> <span class="nb">str</span><span class="p">(</span><span class="n">iterable</span><span class="p">[</span><span class="n">index</span><span class="p">])</span> <span class="o">+</span> <span class="s1">&#39; added to the queue&#39;</span><span class="p">)</span>
