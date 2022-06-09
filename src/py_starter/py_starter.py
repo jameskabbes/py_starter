@@ -257,9 +257,6 @@ def find_kwargs_in_strings( strings: List[str] ):
     
     return args, kwargs
 
-
-
-
 def get_selection_from_list( iterable, prompt: str = 'Select one', print_off: bool = True ) -> Any:
 
     """Returns the Object from iterable that the user selected"""
@@ -279,13 +276,22 @@ def get_selection_from_list( iterable, prompt: str = 'Select one', print_off: bo
     else:
         return None
 
+def get_selections_from_list( iterable, **kwargs ):
 
-def get_user_selection_for_list_items( iterable, prompt: str = 'Make your selection - enter to exit, type "all" to select all', exceptions: List[str] = [], allow_all: bool = True, print_off: bool = True ) -> List[int]:
+    inds = get_user_selection_for_list_items( iterable, **kwargs )
+    return [ list(iterable)[ind] for ind in inds ]        
+
+def get_user_selection_for_list_items( iterable, 
+                                        prompt: str = 'Make your selection - enter to exit, type "all" to select all', 
+                                        exceptions: List[str] = [], 
+                                        allow_all: bool = True, 
+                                        print_off: bool = True ) -> List[int]:
 
     """Returns a list of indices pertaining to what the user selected from a list of options"""
 
+    list_iterable = list(iterable)
     if print_off:
-        print_for_loop( iterable )
+        print_for_loop( list_iterable )
 
     exceptions.append( '' ) # for breaking out of the loop
     if allow_all:
@@ -294,13 +300,13 @@ def get_user_selection_for_list_items( iterable, prompt: str = 'Make your select
     inds = []
     while True:
 
-        index = get_int_input( 1, len(iterable), prompt = prompt, exceptions = exceptions )
+        index = get_int_input( 1, len(list_iterable), prompt = prompt, exceptions = exceptions )
         if index == '':
             break
 
         elif index in exceptions:
             if index == 'all' and allow_all:
-                inds = list(range(len(iterable)))
+                inds = list(range(len(list_iterable)))
             else:   
                 inds.append( index )
             break
@@ -309,10 +315,10 @@ def get_user_selection_for_list_items( iterable, prompt: str = 'Make your select
             index = index - 1
 
         if index not in inds:
-            print ( str(iterable[index]) + ' added to the queue')
+            print ( str(list_iterable[index]) + ' added to the queue')
             inds.append( index )
         else:
-            print ( str(iterable[index]) +  ' already added to the queue')
+            print ( str(list_iterable[index]) + ' already added to the queue')
 
     return inds
 
