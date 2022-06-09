@@ -19,10 +19,11 @@ def get_int_input( lower: int, upper: int, prompt: str = 'Enter an number: ', ex
     """prompts the user to input an integer between two bounds, gives the option to break if answer is found in the list of exceptions """
 
     while True:
+
         if show_range:
-            ans = input(prompt + ' (' + str(lower) + '-' + str(upper) + '): ')
-        else:
-            ans = input(prompt)
+            prompt += ' (' + str(lower) + '-' + str(upper) + '): '
+
+        ans = input(prompt)
 
         try:
             ans = int(ans)
